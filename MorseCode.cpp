@@ -1,5 +1,5 @@
 // Alfred Ledgin
-// 11/28/2015
+// 11/29/2015
 // CS 303
 // Project 3
 
@@ -14,6 +14,13 @@
 using namespace std;
 
 
+MorseCode::MorseCode()
+{
+    defineStandardVec();
+    codeBuilt = false;
+}
+
+
 MorseCode::MorseCode(istream& input)
 {
     defineStandardVec();
@@ -24,7 +31,23 @@ MorseCode::MorseCode(istream& input)
 }
 
 
-bool MorseCode::buildCode(istream& input)
+const bool MorseCode::buildCode(istream& input)
+{
+    if (!buildCodeList(input))
+        return false;
+    codeList.sort();
+    buildCodeVec();
+    codeTree.read_tree(codeVec);
+    // References:
+        // Kuhail, Mohammad. "Binary_Tree.h" 2015. C++ header (.h) file.
+        // Kuhail, Mohammad. "Lecture 10: Introduction to Trees."
+            // CS 303 course materials, University of Missouri-Kansas City,
+            // Fall 2015. _Microsoft PowerPoint_ file. Slide 29.
+    return true;
+}
+
+
+const bool MorseCode::buildCodeList(istream& input)
 {
     string entry;
     char letter = ' ';
@@ -44,8 +67,33 @@ bool MorseCode::buildCode(istream& input)
         pair.define(letter, code);
         codeList.push_back(pair);
     }
-    codeList.sort();
-    // Build tree from here.  Break down into smaller functions.
+    return true;
+}
+
+
+const bool MorseCode::testCode(string inputCode)
+{
+    for (int counter = 0; counter < inputCode.length(); counter++)
+    {
+        if (inputCode[counter] != '.' && inputCode[counter] != '_')
+            return false;
+    }
+    return true;
+}
+
+
+void MorseCode::defineStandardVec()
+{
+    standardVec = { "0", "00", "000", "0000",
+        "0001", "001", "0010", "0011", "01", "010", "0100", "0101",
+        "011", "0110", "0111", "1", "10", "100", "1000", "1001",
+        "101", "1010", "1011", "11", "110", "1100", "1101", "111",
+        "1110", "1111" }; // Check again before finishing.
+}
+
+
+void MorseCode::buildCodeVec()
+{
     codeVec.push_back(" ");
     list<MorseLetter>::iterator iter = codeList.begin();
     int counter = 0;
@@ -67,22 +115,8 @@ bool MorseCode::buildCode(istream& input)
             codeVec.push_back("NULL");
         counter++;
     }
-    codeTree.read_tree(codeVec);
-    // References:
-        // Kuhail, Mohammad. "Binary_Tree.h" 2015. C++ header (.h) file.
-        // Kuhail, Mohammad. "Lecture 10: Introduction to Trees."
-            // CS 303 course materials, University of Missouri-Kansas City,
-            // Fall 2015. _Microsoft PowerPoint_ file. Slide 29.
-    return true;
 }
-
-
-bool MorseCode::testCode(string inputCode)
-{
-    for (int counter = 0; counter < inputCode.length(); counter++)
-    {
-        if (inputCode[counter] != '.' && inputCode[counter] != '_')
-            return false;
-    }
-    return true;
-}
+// Reference for Idea:
+    // Kuhail, Mohammad. "Lecture 10: Introduction to Trees."
+        // CS 303 course materials, University of Missouri-Kansas City,
+        // Fall 2015. _Microsoft PowerPoint_ file. Slide 29.

@@ -1,5 +1,5 @@
 // Alfred Ledgin
-// 11/28/2015
+// 11/29/2015
 // CS 303
 // Project 3
 
@@ -21,18 +21,7 @@ public:
     }
 
 
-    void define(const char& inputLetter, const string& inputCode)
-    {
-        letter = inputLetter;
-        code = "";
-        for (int counter = 0; counter < inputCode.length(); counter++)
-        {
-            if (inputCode[counter] == '.')
-                code += '0';
-            else
-                code += '1';
-        } // Necessary for correct comparison.
-    }
+    void define(const char& inputLetter, const string& inputCode);
 
 
     const bool operator<(const MorseLetter& rhs) const
@@ -41,12 +30,7 @@ public:
     }
 
 
-    const string hasLetter() const 
-    {
-        string letterString;
-        letterString += letter;
-        return letterString;
-    }
+    const string hasLetter() const;
 
 
     const string hasCode() const {return code;}

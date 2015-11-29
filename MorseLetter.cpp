@@ -1,0 +1,30 @@
+// Alfred Ledgin
+// 11/29/2015
+// CS 303
+// Project 3
+
+#include "MorseLetter.h"
+#include <string>
+using namespace std;
+
+
+void MorseLetter::define(const char& inputLetter, const string& inputCode)
+{
+    letter = inputLetter;
+    code = "";
+    for (int counter = 0; counter < inputCode.length(); counter++)
+    {
+        if (inputCode[counter] == '.')
+            code += '0';
+        else
+            code += '1';
+    } // Necessary for correct comparison.
+}
+
+
+const string MorseLetter::hasLetter() const
+{
+    string letterString;
+    letterString += letter;
+    return letterString;
+}
