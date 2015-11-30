@@ -1,5 +1,5 @@
 // Alfred Ledgin
-// 11/29/2015
+// 11/30/2015
 // CS 303
 // Project 3
 
@@ -21,7 +21,14 @@ const char MorseDecoder::decode(const string& codedLetter) const
 {
     if (definitionSet.isBuilt())
     {
-        return decodeInternal(codedLetter, 0, inputTree)[0];
+        try
+        {
+            return decodeInternal(codedLetter, 0, inputTree)[0];
+        }
+        catch (std::exception)
+        {
+            return ' ';
+        }
     }
     else
         return ' ';

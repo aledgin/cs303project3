@@ -1,5 +1,5 @@
 // Alfred Ledgin
-// 11/29/2015
+// 11/30/2015
 // CS 303
 // Project 3
 
@@ -24,17 +24,17 @@ MorseCode::MorseCode()
 MorseCode::MorseCode(istream& input)
 {
     defineStandardVec();
-    if (buildCode(input))
-        codeBuilt = true;
-    else
-        codeBuilt = false;
+    buildCode(input);
 }
 
 
-const bool MorseCode::buildCode(istream& input)
+void MorseCode::buildCode(istream& input)
 {
     if (!buildCodeList(input))
-        return false;
+    {
+        codeBuilt = false;
+        return;
+    }
     codeList.sort();
     buildCodeVec();
     codeTree.read_tree(codeVec);
@@ -43,7 +43,7 @@ const bool MorseCode::buildCode(istream& input)
         // Kuhail, Mohammad. "Lecture 10: Introduction to Trees."
             // CS 303 course materials, University of Missouri-Kansas City,
             // Fall 2015. _Microsoft PowerPoint_ file. Slide 29.
-    return true;
+    codeBuilt = true;
 }
 
 

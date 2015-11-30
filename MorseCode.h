@@ -1,5 +1,5 @@
 // Alfred Ledgin
-// 11/29/2015
+// 11/30/2015
 // CS 303
 // Project 3
 
@@ -25,7 +25,7 @@ class MorseCode
         MorseCode(istream& input);
 
 
-        const bool buildCode(istream& input);
+        void buildCode(istream& input);
 
 
         const bool isBuilt() const {return codeBuilt;}
