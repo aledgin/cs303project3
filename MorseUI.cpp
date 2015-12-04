@@ -1,60 +1,42 @@
 // Alfred Ledgin
-// 11/30/2015
+// 12/3/2015
 // CS 303
 // Project 3
 
 #include "MorseSystem.h"
+#include "MorseUI.h"
 #include <iostream>
 #include <fstream>
 #include <string>
 using namespace std;
 
 
-void displayMenu(char& menuInput);
-
-
-void obtainFile(MorseSystem& inputSystem);
-
-
-void decodeWord(MorseSystem& inputSystem);
-
-
-void encodeWord(MorseSystem& inputSystem);
-
-
-void convertSlashes(string& inputString);
-
-
-int main()
+void MorseUI::execute()
 {
 
-    bool quit = false;
-    char menuOption;
-    MorseSystem codeSystem;
+    quit = false;
 
     do
     {
 
-        displayMenu(menuOption);
+        displayMenu();
 
         switch (menuOption)
         {
-            case '1': obtainFile(codeSystem); break;
-            case '2': decodeWord(codeSystem); break;
-            case '3': encodeWord(codeSystem); break;
+            case '1': obtainFile(); break;
+            case '2': decodeWord(); break;
+            case '3': encodeWord(); break;
             case '4': quit = true; break;
-            default: displayMenu(menuOption); break;
+            default: displayMenu(); break;
         }
 
     }
     while (!quit);
     
-    return 0;
-
 }
 
 
-void displayMenu(char& menuInput)
+void MorseUI::displayMenu()
 {
     cout << "Morse Code System" << endl << endl;
     cout << "Enter a menu option:" << endl;
@@ -62,11 +44,11 @@ void displayMenu(char& menuInput)
     cout << "2. Decode a word." << endl;
     cout << "3. Encode a word." << endl;
     cout << "4. Quit." << endl << endl;
-    cin >> menuInput;
+    cin >> menuOption;
 }
 
 
-void obtainFile(MorseSystem& inputSystem)
+void MorseUI::obtainFile()
 {
     string filename;
     ifstream file;
@@ -77,42 +59,70 @@ void obtainFile(MorseSystem& inputSystem)
         file.open(filename);
         if (filename == "b")
             break;
+        if (!file)
+            cout << "Error: File not found." << endl;
     }
     while (!file);
     if (file)
-        inputSystem.setInput(file);
+        codeSystem.setInput(file);
     file.close();
 }
 
 
-void decodeWord(MorseSystem& inputSystem)
+void MorseUI::decodeWord()
 {
     string inputWord;
     cout << "Enter a word in Morse Code." << endl;
-    cout << "Separate each letter code with a slash (/)." << endl;
-    cout << "Do not use spaces." << endl;
-    cin >> inputWord;
-    convertSlashes(inputWord);
-    cout << "The word is: " << inputSystem.decodeWord(inputWord) << endl
-        << endl;
+    handleInput(inputWord);
+    try
+    {
+        cout << "The word is: " << codeSystem.decodeWord(inputWord) << endl
+            << endl;
+    }
+    catch(std::exception& error)
+    {
+        cout << "Error: " << error.what() << endl << endl;
+    }
+    // Reference:
+        // "std::exception." _cplusplus.com_. cplusplus.com, 2015.
+            // Web. 3 Dec. 2015.
+            // <http://www.cplusplus.com/reference/exception/exception/>.
 }
 
 
-void encodeWord(MorseSystem& inputSystem)
+void MorseUI::encodeWord()
 {
     string inputWord;
     cout << "Enter a word to encode:" << endl;
     cin >> inputWord;
-    cout << "Morse Code: " << inputSystem.encodeWord(inputWord) << endl
-        << endl;
-}
-
-
-void convertSlashes(string& inputString)
-{
-    for (int counter = 0; counter < inputString.length(); counter++)
+    try
     {
-        if (inputString[counter] == '/')
-            inputString[counter] = ' ';
+        cout << "Morse Code: " << codeSystem.encodeWord(inputWord) << endl
+            << endl;
     }
+    catch(std::exception& error)
+    {
+        cout << "Error: " << error.what() << endl << endl;
+    }
+    // Reference:
+        // "std::exception." _cplusplus.com_. cplusplus.com, 2015.
+            // Web. 3 Dec. 2015.
+            // <http://www.cplusplus.com/reference/exception/exception/>.
 }
+
+
+void MorseUI::handleInput(string& inputString)
+{
+    do
+    {
+        cin.ignore();
+        inputString = "";
+        getline(cin, inputString);
+        if (inputString == "")
+            inputString = "NULL";
+    } while (inputString.length() > 500 || inputString.length() == 0);
+    // Maximum of 100 four-character Morse-coded letters plus 100 spaces.
+}
+// Source:
+    // Kuhail, Mohammad. "White spaces." Message to the author.
+        // 2 Dec. 2015. E-mail.

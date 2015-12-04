@@ -3,6 +3,7 @@
 // CS 303
 // Project 3
 
+#pragma once
 #include "MorseCode.h"
 #include <iostream>
 #include <string>

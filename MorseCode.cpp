@@ -69,6 +69,11 @@ const vector<string> MorseCode::parse(const string& input) const
 
 const char MorseCode::decodeLetter(const string& codedLetter) const
 {
+    if (!testCode(codedLetter))
+    {
+        throw
+            std::exception("Invalid Morse Code.");
+    }
     if (isBuilt())
     {
         try
@@ -77,11 +82,15 @@ const char MorseCode::decodeLetter(const string& codedLetter) const
         }
         catch (std::exception)
         {
-            return ' ';
+            throw
+                std::exception("Letter not found.");
         }
     }
     else
-        return ' ';
+    {
+        throw
+            std::exception("Code set not found.");
+    }
 }
 
 
@@ -115,6 +124,16 @@ const string MorseCode::encodeLetter(char letter) const
 {
     if (isBuilt())
     {
+        if (letter >= 'A' && letter <= 'Z')
+            letter += 32;
+            // Reference for ASCII conversion:
+                // Wikipedia contributors. "ASCII." _Wikipedia, The Free
+                    // Encyclopedia_. Wikipedia, The Free Encyclopedia, 
+                    // 20 Nov. 2015. Web. 3 Dec. 2015.
+                    // <https://en.wikipedia.org/wiki/ASCII>.
+                    // Distributed under Creative Commons
+                    // Attribution-ShareAlike License:
+                    // <http://creativecommons.org/licenses/by-sa/3.0/>.
         try
         {
             return codeMap.at(letter);
@@ -125,11 +144,15 @@ const string MorseCode::encodeLetter(char letter) const
         }
         catch (std::exception)
         {
-            return "";
+            throw
+                std::exception("Character is not a letter.");
         }
     }
     else
-        return "";
+    {
+        throw
+            std::exception("Code set not found.");
+    }
 }
 
 
@@ -145,7 +168,10 @@ const string MorseCode::decodeWord(const vector<string>& input) const
         return output;
     }
     else
-        return "";
+    {
+        throw
+            std::exception("Code set not found.");
+    }
 }
 
 
@@ -163,7 +189,10 @@ const string MorseCode::encodeWord(const string& input) const
         return output;
     }
     else
-        return "";
+    {
+        throw
+            std::exception("Code set not found");
+    }
 }
 
 
@@ -175,7 +204,10 @@ const string MorseCode::interpret(const string& input) const
         return decodeWord(currentLetters);
     }
     else
-        return "";
+    {
+        throw
+            std::exception("Code set not found.");
+    }
 }
 
 
@@ -203,7 +235,7 @@ const bool MorseCode::buildCodeList(istream& input)
 }
 
 
-const bool MorseCode::testCode(string inputCode)
+const bool MorseCode::testCode(const string& inputCode) const
 {
     for (int counter = 0; counter < inputCode.length(); counter++)
     {

@@ -65,7 +65,7 @@ class MorseCode
         const bool buildCodeList(istream& input);
 
 
-        const bool testCode(string inputCode);
+        const bool testCode(const string& inputCode) const;
 
 
         void defineStandardVec();

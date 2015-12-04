@@ -23,7 +23,7 @@
 //    cout << "***" << endl;
 //    cout << testCode.decodeLetter("_..") << endl;
 //    cout << "***" << endl;
-//    cout << testCode.encodeLetter('c') << endl;
+//    cout << testCode.encodeLetter('C') << endl;
 //    cout << "***" << endl;
 //    vector<string> decodeTestVec;
 //    decodeTestVec = { "_..", "__." };
