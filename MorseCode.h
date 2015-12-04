@@ -1,5 +1,5 @@
 // Alfred Ledgin
-// 12/3/2015
+// 12/4/2015
 // CS 303
 // Project 3
 
@@ -35,8 +35,9 @@ class MorseCode
         // Preconditions: A MorseCode object needs to be created with the given
             // input source for alphabet definition.
         // Postconditions: This constructor attempts to build a code set using
-            // given input source for alphabet definition, by first creating
-            // needed vector and then calling the buildCode() function.
+            // the given input source for alphabet definition, by first
+            // creating the needed vector and then calling the buildCode()
+            // function.
 
 
         void buildCode(istream& input);
@@ -62,7 +63,7 @@ class MorseCode
         // Preconditions: When testing the Morse Code set, one wishes to know
             // whether the binary tree has been successfully built.
         // Postconditions: This function returns the string representation of
-            // binary tree used for the Morse Code alpahbet definition.
+            // the binary tree used for the Morse Code alphabet definition.
 
 
         const vector<string> parse(const string& input) const;
@@ -73,8 +74,8 @@ class MorseCode
 
 
         const char decodeLetter(const string& codedLetter) const;
-        // Preconditions: A string of Morse Code characters representing
-            // a single letter needs to be decoded.
+        // Preconditions: A string of Morse Code characters representing a
+            // single letter needs to be decoded.
         // Postconditions: This function tests the given string and the status
             // of the code set definition, and then calls an internal function
             // to use the binary tree for alphabet definition in order to
@@ -91,20 +92,22 @@ class MorseCode
         const string decodeWord(const vector<string>& input) const;
         // Preconditions: A vector storing strings corresponding to Morse Code
             // symbols needs to be decoded as the corresponding word.
-        // Postconditions: This function calls the decodeLetter() function in
-            // order to decode the word stored in the vector.
+        // Postconditions: This function calls the decodeLetter() function for
+            // each string in the vector, in order to decode the word stored in
+            // the vector.
 
 
         const string encodeWord(const string& input) const;
         // Preconditions: A given word needs to be encoded as a string of Morse
             // Code symbols.
-        // Postconditions: This function calls the encodeLetter() function in
-            // order to encode the word as a string of Morse Code symbols.
+        // Postconditions: This function calls the encodeLetter() function for
+            // each letter in the given string, in order to encode the word as
+            // a string of Morse Code symbols.
 
 
         const string interpret(const string& input) const;
-        // Preconditions: A of Morse Code characters representing a word needs
-            // to be decoded.
+        // Preconditions: A string of Morse Code characters representing a word
+            // needs to be decoded.
         // Postconditions: This function calls the parse() function to separate
             // the Morse Code letters in the given string and then calls the
             // decodeWord() function to decode the resulting vector.
@@ -126,7 +129,7 @@ class MorseCode
         // Preconditions: A list of MorseLetter objects needs to be built
             // according to the input definition of a Morse Code alphabet.
         // Postconditions: This function iterates through the input Morse
-            // Code alphabet definition, builds a map of key letters and
+            // Code alphabet definition, builds a map of letter keys and
             // Morse Code entries, and then builds a resulting list of
             // MorseLetter objects.
 
@@ -146,7 +149,7 @@ class MorseCode
         // Postconditions: This function builds a vector of binary strings with
             // lengths between 1 and 4 digits, in the order in which they would
             // appear in a binary tree in which the root is null, 0s point to
-            // left, and 1s point to the right.
+            // the left, and 1s point to the right.
 
 
         void buildCodeVec();

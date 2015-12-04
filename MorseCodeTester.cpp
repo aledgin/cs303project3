@@ -1,7 +1,7 @@
-//// This has been commented out so that MorseUI.cpp will run instead.
+//// This has been commented out so that main.cpp will run instead.
 //// FOR TESTING ONLY--DO NOT TURN IN
 //// Alfred Ledgin
-//// 12/3/2015
+//// 12/4/2015
 //// CS 303
 //// Project 3
 //

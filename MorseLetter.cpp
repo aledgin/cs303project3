@@ -1,5 +1,5 @@
 // Alfred Ledgin
-// 12/3/2015
+// 12/4/2015
 // CS 303
 // Project 3
 
@@ -18,7 +18,7 @@ void MorseLetter::define(const char& inputLetter, const string& inputCode)
             code += '0';
         else // Assumption: inputCode[counter] == '_'
             code += '1';
-    } // Necessary for correct comparison.
+    } // Conversion necessary for correct comparison.
 }
 
 
