@@ -1,11 +1,9 @@
 // Alfred Ledgin
-// 11/30/2015
+// 12/3/2015
 // CS 303
 // Project 3
 
 #include "MorseCode.h"
-#include "MorseInterpreter.h"
-#include "WordEncoder.h"
 #include <iostream>
 #include <string>
 using namespace std;
@@ -22,25 +20,26 @@ class MorseSystem
         MorseSystem(istream& input) {setInput(input);}
 
 
-        void setInput(istream& input);
+        void setInput(istream& input)
+        {
+            definitionSet.buildCode(input);
+        }
 
 
         const string decodeWord(const string& inputCodedWord) const
         {
-            return theInterpreter.interpret(inputCodedWord);
+            return definitionSet.interpret(inputCodedWord);
         }
 
 
         const string encodeWord(const string& inputWord) const
         {
-            return theEncoder.encode(inputWord);
+            return definitionSet.encodeWord(inputWord);
         }
 
 
     private:
 
         MorseCode definitionSet;
-        MorseInterpreter theInterpreter;
-        WordEncoder theEncoder;
 
 };

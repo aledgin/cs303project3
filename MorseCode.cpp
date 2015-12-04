@@ -1,5 +1,5 @@
 // Alfred Ledgin
-// 11/30/2015
+// 12/3/2015
 // CS 303
 // Project 3
 
@@ -44,6 +44,138 @@ void MorseCode::buildCode(istream& input)
             // CS 303 course materials, University of Missouri-Kansas City,
             // Fall 2015. _Microsoft PowerPoint_ file. Slide 29.
     codeBuilt = true;
+}
+
+
+const vector<string> MorseCode::parse(const string& input) const
+{
+    vector<string> output;
+    int counter = 0;
+    while (counter < input.length())
+    {
+        string newMorseLetter;
+        while (input[counter] != ' ' && counter < input.length())
+        {
+            newMorseLetter += input[counter];
+            counter++;
+        }
+        if (newMorseLetter.length())
+            output.push_back(newMorseLetter);
+        counter++;
+    }
+    return output;
+}
+
+
+const char MorseCode::decodeLetter(const string& codedLetter) const
+{
+    if (isBuilt())
+    {
+        try
+        {
+            return decodeLetterInternal(codedLetter, 0, codeTree)[0];
+        }
+        catch (std::exception)
+        {
+            return ' ';
+        }
+    }
+    else
+        return ' ';
+}
+
+
+const string MorseCode::decodeLetterInternal(const string& codedLetter, int index,
+    Binary_Tree<string> tempTree) const
+{
+    if (index == codedLetter.length() - 1)
+    {
+        if (codedLetter[index] == '.')
+            return tempTree.get_left_subtree().get_data();
+        else
+            return tempTree.get_right_subtree().get_data();
+    }
+    else
+    {
+        if (codedLetter[index] == '.')
+            return decodeLetterInternal(codedLetter, index + 1,
+            tempTree.get_left_subtree());
+        else
+            return decodeLetterInternal(codedLetter, index + 1,
+            tempTree.get_right_subtree());
+    }
+}
+// Reference for Binary Tree Functions:
+    // Kuhail, Mohammad. "Lecture 10: Introduction to Trees."
+        // CS 303 course materials, University of Missouri-Kansas City,
+        // Fall 2015. _Microsoft PowerPoint_ file. Slide 24.
+
+
+const string MorseCode::encodeLetter(char letter) const
+{
+    if (isBuilt())
+    {
+        try
+        {
+            return codeMap.at(letter);
+            // Reference:
+                // "std::map::at." _cplusplus.com_. cplusplus.com, 2015. Web.
+                    // 29 Nov. 2015.
+                    // <http://www.cplusplus.com/reference/map/map/at/>.
+        }
+        catch (std::exception)
+        {
+            return "";
+        }
+    }
+    else
+        return "";
+}
+
+
+const string MorseCode::decodeWord(const vector<string>& input) const
+{
+    if (isBuilt())
+    {
+        string output;
+        for (int counter = 0; counter < input.size(); counter++)
+        {
+            output += decodeLetter(input[counter]);
+        }
+        return output;
+    }
+    else
+        return "";
+}
+
+
+const string MorseCode::encodeWord(const string& input) const
+{
+    if (isBuilt())
+    {
+        string output;
+        for (int counter = 0; counter < input.length(); counter++)
+        {
+            output += encodeLetter(input[counter]);
+            if (counter < input.length() - 1)
+                output += " ";
+        }
+        return output;
+    }
+    else
+        return "";
+}
+
+
+const string MorseCode::interpret(const string& input) const
+{
+    if (isBuilt())
+    {
+        vector<string> currentLetters = parse(input);
+        return decodeWord(currentLetters);
+    }
+    else
+        return "";
 }
 
 

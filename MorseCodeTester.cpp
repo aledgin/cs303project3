@@ -1,18 +1,12 @@
-// This has been commented out so that MorseUI.cpp will run instead.
+//// This has been commented out so that MorseUI.cpp will run instead.
 //// FOR TESTING ONLY--DO NOT TURN IN
 //// Alfred Ledgin
-//// 11/30/2015
+//// 12/3/2015
 //// CS 303
 //// Project 3
 //
 //#include <iostream>
 //#include "MorseCode.h"
-//#include "MorseDecoder.h"
-//#include "MorseEncoder.h"
-//#include "WordDecoder.h"
-//#include "WordEncoder.h"
-//#include "MorseParser.h"
-//#include "MorseInterpreter.h"
 //#include "MorseSystem.h"
 //#include <fstream>
 //#include <vector>
@@ -27,26 +21,20 @@
 //    file.close();
 //    cout << testCode.showCodeTree() << endl;
 //    cout << "***" << endl;
-//    MorseDecoder theDecoder(testCode);
-//    cout << theDecoder.decode("_..") << endl;
+//    cout << testCode.decodeLetter("_..") << endl;
 //    cout << "***" << endl;
-//    MorseEncoder theEncoder(testCode);
-//    cout << theEncoder.encode('c') << endl;
+//    cout << testCode.encodeLetter('c') << endl;
 //    cout << "***" << endl;
 //    vector<string> decodeTestVec;
 //    decodeTestVec = { "_..", "__." };
-//    WordDecoder toDecodeWords(testCode);
-//    cout << toDecodeWords.decode(decodeTestVec) << endl;
+//    cout << testCode.decodeWord(decodeTestVec) << endl;
 //    cout << "***" << endl;
-//    WordEncoder toEncodeWords(testCode);
-//    cout << toEncodeWords.encode("ac") << endl;
+//    cout << testCode.encodeWord("ac") << endl;
 //    cout << "***" << endl;
-//    MorseParser theParser("_.. __. _.. __.");
-//    vector<string> decodeTestVec2 = theParser.parse();
-//    cout << toDecodeWords.decode(decodeTestVec2) << endl;
+//    vector<string> decodeTestVec2 = testCode.parse("_.. __. _.. __.");
+//    cout << testCode.decodeWord(decodeTestVec2) << endl;
 //    cout << "***" << endl;
-//    MorseInterpreter theInterpreter(testCode);
-//    cout << theInterpreter.interpret("_.. __. _.. __. _.. __.") << endl;
+//    cout << testCode.interpret("_.. __. _.. __. _.. __.") << endl;
 //    cout << "***" << endl;
 //    MorseSystem theSystem;
 //    file.open("morse.txt");
@@ -56,3 +44,7 @@
 //    system("pause");
 //    return 0;
 //}
+//// Reference for tested input:
+//    // Kuhail, Mohammad. "Project 3." Project assignment sheet,
+//        // CS 303 course materials, University of Missouri-Kansas City,
+//        // Fall 2015. PDF file. Pages 4-5.

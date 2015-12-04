@@ -1,5 +1,5 @@
 // Alfred Ledgin
-// 11/30/2015
+// 12/3/2015
 // CS 303
 // Project 3
 
@@ -34,16 +34,32 @@ class MorseCode
         const string showCodeTree() const {return codeTree.to_string();}
         // Reference:
             // Kuhail, Mohammad. "Binary_Tree.h" 2015. C++ header (.h) file.
-        // Note: We may not need this function for final version.
+        // Note: This function exists for testing purposes.
 
 
-        const Binary_Tree<string>& accessTree() const {return codeTree;}
+        const vector<string> parse(const string& input) const;
 
 
-        const map<char, string>& accessMap() const {return codeMap;}
+        const char decodeLetter(const string& codedLetter) const;
+
+
+        const string encodeLetter(char letter) const;
+
+
+        const string decodeWord(const vector<string>& input) const;
+
+
+        const string encodeWord(const string& input) const;
+
+
+        const string interpret(const string& input) const;
 
 
     private:
+
+
+        const string decodeLetterInternal(const string& codedLetter,
+            int index, Binary_Tree<string> tempTree) const;
 
 
         const bool buildCodeList(istream& input);
