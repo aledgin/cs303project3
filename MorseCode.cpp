@@ -39,7 +39,7 @@ void MorseCode::buildCode(istream& input)
     buildCodeVec();
     codeTree.read_tree(codeVec);
     // References:
-        // Kuhail, Mohammad. "Binary_Tree.h" 2015. C++ header (.h) file.
+        // Kuhail, Mohammad. "Binary_Tree.h." 2015. C++ header (.h) file.
         // Kuhail, Mohammad. "Lecture 10: Introduction to Trees."
             // CS 303 course materials, University of Missouri-Kansas City,
             // Fall 2015. _Microsoft PowerPoint_ file. Slide 29.

@@ -120,7 +120,8 @@ void MorseUI::handleInput(string& inputString)
         getline(cin, inputString);
         if (inputString == "")
             inputString = "NULL";
-    } while (inputString.length() > 500 || inputString.length() == 0);
+    }
+    while (inputString.length() > 500 || inputString.length() == 0);
     // Maximum of 100 four-character Morse-coded letters plus 100 spaces.
 }
 // Source:
