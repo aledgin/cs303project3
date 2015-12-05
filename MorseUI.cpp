@@ -122,7 +122,7 @@ void MorseUI::handleInput(string& inputString)
             inputString = "NULL";
     }
     while (inputString.length() > 500 || inputString.length() == 0);
-    // Maximum of 100 four-character Morse-coded letters plus 100 spaces.
+    // 500 chars allow 100 four-character Morse-coded letters plus 100 spaces.
 }
 // Source:
     // Kuhail, Mohammad. "White spaces." Message to the author.
