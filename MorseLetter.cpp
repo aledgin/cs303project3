@@ -18,7 +18,7 @@ void MorseLetter::define(const char& inputLetter, const string& inputCode)
             code += '0';
         else // Assumption: inputCode[counter] == '_'
             code += '1';
-    } // Conversion necessary for correct comparison.
+    } // Conversion helps code readability.
 }
 
 
