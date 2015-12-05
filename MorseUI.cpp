@@ -27,7 +27,7 @@ void MorseUI::execute()
             case '2': decodeWord(); break;
             case '3': encodeWord(); break;
             case '4': quit = true; break;
-            default: displayMenu(); break;
+            default: break;
         }
 
     }
