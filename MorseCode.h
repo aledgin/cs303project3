@@ -59,7 +59,7 @@ class MorseCode
 
         const string showCodeTree() const {return codeTree.to_string();}
         // Reference:
-            // Kuhail, Mohammad. "Binary_Tree.h" 2015. C++ header (.h) file.
+            // Kuhail, Mohammad. "Binary_Tree.h." 2015. C++ header (.h) file.
         // Preconditions: When testing the Morse Code set, one wishes to know
             // whether the binary tree has been successfully built.
         // Postconditions: This function returns the string representation of
